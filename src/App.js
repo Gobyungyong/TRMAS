@@ -1,5 +1,16 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+
 function App() {
-  return <></>;
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/test" element={<Layout />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App;
