@@ -56,11 +56,11 @@ export default function Header() {
                 <Popover.Group className="hidden lg:flex lg:gap-x-12">
                     <Popover className="relative">
                         <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                            Product
-                            <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                            Home
+                            {/* <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" /> */}
                         </Popover.Button>
 
-                        <Transition
+                        {/* <Transition
                             as={Fragment}
                             enter="transition ease-out duration-200"
                             enterFrom="opacity-0 translate-y-1"
@@ -105,24 +105,27 @@ export default function Header() {
                                     ))}
                                 </div>
                             </Popover.Panel>
-                        </Transition>
+                        </Transition> */}
                     </Popover>
 
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Features
+                        About
                     </a>
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Marketplace
+                        Projects
                     </a>
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Company
+                        Story
+                    </a>
+                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                        Policy
                     </a>
                 </Popover.Group>
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                         Log in <span aria-hidden="true">&rarr;</span>
                     </a>
-                </div>
+                </div> */}
             </nav>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                 <div className="fixed inset-0 z-10" />
@@ -152,17 +155,17 @@ export default function Header() {
                                     {({ open }) => (
                                         <>
                                             <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                                                Product
-                                                <ChevronDownIcon
+                                                Home
+                                                {/* <ChevronDownIcon
                                                     className={classNames(
                                                         open ? 'rotate-180' : '',
                                                         'h-5 w-5 flex-none'
                                                     )}
                                                     aria-hidden="true"
-                                                />
+                                                /> */}
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="mt-2 space-y-2">
-                                                {[...products, ...callsToAction].map((item) => (
+                                                {/* {[...products, ...callsToAction].map((item) => (
                                                     <Disclosure.Button
                                                         key={item.name}
                                                         as="a"
@@ -171,7 +174,7 @@ export default function Header() {
                                                     >
                                                         {item.name}
                                                     </Disclosure.Button>
-                                                ))}
+                                                ))} */}
                                             </Disclosure.Panel>
                                         </>
                                     )}
@@ -180,29 +183,35 @@ export default function Header() {
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
-                                    Features
+                                    About
                                 </a>
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
-                                    Marketplace
+                                    Projects
                                 </a>
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
-                                    Company
+                                    Story
+                                </a>
+                                <a
+                                    href="#"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                >
+                                    Policy
                                 </a>
                             </div>
-                            <div className="py-6">
+                            {/* <div className="py-6">
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     Log in
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </Dialog.Panel>
