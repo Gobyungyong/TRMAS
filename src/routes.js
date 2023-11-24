@@ -1,6 +1,9 @@
 const routes = {
   index: "/",
-  admin: "/admin",
+  project: "/project",
+  story: "/story",
+  policy: "/policy",
+  projectAdmin: "/admin/project",
   storyAdmin: "/admin/story",
   policyAdmin: "/admin/policy",
   adminLogin: "/admin/login",
