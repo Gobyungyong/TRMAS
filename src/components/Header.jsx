@@ -21,7 +21,7 @@ export default function Header() {
       >
         <div className="flex lg:flex-1">
           <Link
-            to={regex.test(params) ? routes.admin : routes.index}
+            to={regex.test(params) ? routes.projectAdmin : routes.index}
             aria-current="page"
             className="-m-1.5 p-1.5 flex space-x-2"
           >
@@ -69,7 +69,7 @@ export default function Header() {
             About
           </Link>
           <Link
-            to={regex.test(params) ? routes.admin : routes.index}
+            to={regex.test(params) ? routes.projectAdmin : routes.index}
             aria-current="page"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
@@ -148,7 +148,7 @@ export default function Header() {
                   About
                 </Link>
                 <Link
-                  to={regex.test(params) ? routes.admin : routes.index}
+                  to={regex.test(params) ? routes.projectAdmin : routes.index}
                   aria-current="page"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
