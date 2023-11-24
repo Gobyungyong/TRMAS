@@ -1,28 +1,36 @@
-import React, { useState, useContext } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
-import routes from "../../routes";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserSessionPersistence,
+} from "firebase/auth";
+import { firebaseAuth } from "../firebase";
+// import { createNewAdmin } from "../../firebase";
+import routes from "../routes";
 
 function Login() {
   const [loginIsFault, setLoginIsFault] = useState(false);
   const navigate = useNavigate();
 
   const {
-    register: loginRegister,
+    register,
     handleSubmit,
-    formState: { isSubmitted: isLoginSubmitted, errors: loginErrors },
+    formState: { isSubmitted, errors },
   } = useForm();
 
-  // const onLogInSubmit = async (data) => {
-  //   try {
-  //     await login(data.id, data.password);
-  //     navigate(routes.homepage, { replace: true });
-  //   } catch (error) {
-  //     console.error("로그인 실패:", error);
-  //     setLoginIsFault(true);
-  //   }
-  // };
+  const onLogInSubmit = async (data) => {
+    try {
+      await setPersistence(firebaseAuth, browserSessionPersistence);
+      await signInWithEmailAndPassword(firebaseAuth, data.id, data.password);
+
+      navigate(routes.projectAdmin, { replace: true });
+    } catch (error) {
+      console.error("로그인 실패:", error);
+      setLoginIsFault(true);
+    }
+  };
 
   return (
     <>
@@ -34,10 +42,7 @@ function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form
-            className="space-y-6"
-            // onSubmit={handleSubmit(onLogInSubmit)}
-          >
+          <form className="space-y-6" onSubmit={handleSubmit(onLogInSubmit)}>
             <div>
               <label
                 htmlFor="username"
@@ -51,13 +56,9 @@ function Login() {
                   type="text"
                   placeholder="아이디"
                   aria-invalid={
-                    isLoginSubmitted
-                      ? loginErrors.id
-                        ? "true"
-                        : "false"
-                      : undefined
+                    isSubmitted ? (errors.id ? "true" : "false") : undefined
                   }
-                  {...loginRegister("id", {
+                  {...register("id", {
                     required: "아이디는 필수 입력입니다.",
                     minLength: {
                       value: 3,
@@ -65,9 +66,9 @@ function Login() {
                     },
                   })}
                 />
-                {loginErrors.id && (
+                {errors.id && (
                   <small className="text-red-500 font-semibold" role="alert">
-                    {loginErrors.id.message}
+                    {errors.id.message}
                   </small>
                 )}
               </div>
@@ -88,13 +89,13 @@ function Login() {
                   type="password"
                   placeholder="비밀번호"
                   aria-invalid={
-                    isLoginSubmitted
-                      ? loginErrors.password
+                    isSubmitted
+                      ? errors.password
                         ? "true"
                         : "false"
                       : undefined
                   }
-                  {...loginRegister("password", {
+                  {...register("password", {
                     required: "비밀번호는 필수 입력입니다.",
                     minLength: {
                       value: 5,
@@ -102,9 +103,9 @@ function Login() {
                     },
                   })}
                 />
-                {loginErrors.password && (
+                {errors.password && (
                   <small className="text-red-500 font-semibold" role="alert">
-                    {loginErrors.password.message}
+                    {errors.password.message}
                   </small>
                 )}
                 {loginIsFault && (
