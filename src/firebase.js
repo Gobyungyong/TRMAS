@@ -1,9 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -15,10 +11,18 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const firebaseAuth = getAuth(firebaseApp);
 
-export {
-  firebaseAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-};
+export const firebaseAuth = getAuth(firebaseApp);
+
+// export function createNewAdmin() {
+//   console.log("firebase config", firebaseConfig);
+//   const email = process.env.REACT_APP_ADMIN_EMAIL;
+//   const password = process.env.REACT_APP_ADMIN_PASSWORD;
+//   const newAdmin = createUserWithEmailAndPassword(
+//     firebaseAuth,
+//     email,
+//     password
+//   );
+
+//   return newAdmin;
+// }
