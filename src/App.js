@@ -10,6 +10,7 @@ import Story from "./pages/Stroy";
 import Policy from "./pages/Policy";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import UploadProject from "./pages/UploadProject";
 
 function App() {
   return (
@@ -23,6 +24,14 @@ function App() {
               element={
                 <RouterForLoginUser>
                   <Project template="admin" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
+              path={routes.projectUpload}
+              element={
+                <RouterForLoginUser>
+                  <UploadProject />
                 </RouterForLoginUser>
               }
             />
