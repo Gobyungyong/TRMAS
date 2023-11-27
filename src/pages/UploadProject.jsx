@@ -1,6 +1,6 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useState, useRef } from "react";
-import { Navigation, Pagination, Scrollbar, Virtual } from "swiper/modules";
+import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ref as DBref, set } from "firebase/database";
