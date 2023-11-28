@@ -19,6 +19,9 @@ function App() {
         <Routes>
           <Route path={routes.index} element={<Layout />}>
             <Route path={routes.home} element={<Home />} />
+            <Route path={routes.project} element={<Project />} />
+            <Route path={routes.story} element={<Story />} />
+            <Route path={routes.policy} element={<Policy />} />
             <Route
               path={routes.projectAdmin}
               element={
