@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, remove } from "firebase/database";
 import { SwiperSlide } from "swiper/react";
 
 import routes from "../routes";
@@ -34,6 +34,11 @@ function Project({ template = null }) {
     navigate(routes.projectModify, { state: project });
   }
 
+  function deleteProject(project) {
+    const targetProject = ref(db, `projects/${project.subject}`);
+    remove(targetProject);
+  }
+
   return (
     <div className="bg-white py-8">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -56,7 +61,10 @@ function Project({ template = null }) {
         </div>
         <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {projects.map((project, i) => (
-            <div className="max-w-l overflow-hidden rounded-sm shadow-md shadow-black relative z-40 group cursor-pointer">
+            <div
+              key={i}
+              className="max-w-l overflow-hidden rounded-sm shadow-md shadow-black relative z-40 group cursor-pointer"
+            >
               <img
                 src={project.images[0]}
                 alt={project.subject}
@@ -71,10 +79,12 @@ function Project({ template = null }) {
               >
                 {project.subject}
               </div>
-              <div className="group-hover:block group-hover:text-xl absolute top-5 right-5 space-x-4 group-hover:text-white group-hover:z-50 group-hover:font-bold group-hover:text-opacity-80 hidden">
-                <button onClick={() => modifyProject(project)}>수정</button>
-                <button>삭제</button>
-              </div>
+              {template === "admin" ? (
+                <div className="group-hover:block group-hover:text-xl absolute top-5 right-5 space-x-4 group-hover:text-white group-hover:z-50 group-hover:font-bold group-hover:text-opacity-80 hidden">
+                  <button onClick={() => modifyProject(project)}>수정</button>
+                  <button onClick={() => deleteProject(project)}>삭제</button>
+                </div>
+              ) : null}
             </div>
           ))}
           <Modal
