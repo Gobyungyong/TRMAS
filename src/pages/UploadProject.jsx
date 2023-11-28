@@ -1,5 +1,5 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SwiperSlide } from "swiper/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ref as DBref, set } from "firebase/database";
@@ -7,7 +7,7 @@ import { ref as DBref, set } from "firebase/database";
 import Button from "../components/Button";
 import { storage, db } from "../firebase";
 import Loading from "../components/Loading";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../routes";
 import Swiper from "../components/Swiper";
 
@@ -15,9 +15,17 @@ function UploadProject({ template = null }) {
   const [imageSrc, setImageSrc] = useState([]);
   const [imageFiles, setImageFiles] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { state } = useLocation();
   const navigate = useNavigate();
   const subjectRef = useRef();
   const imageLimit = 10;
+
+  useEffect(() => {
+    if (!template === "modify") return;
+
+    setImageSrc(state?.images);
+    subjectRef.current.value = state?.subject;
+  }, [template, state]);
 
   async function onUploadProjectToFirebase() {
     if (!imageFiles || subjectRef.current.value === "") return;
@@ -117,7 +125,7 @@ function UploadProject({ template = null }) {
               />
             </label>
 
-            {imageSrc.length > 0 ? (
+            {imageSrc?.length > 0 ? (
               <Swiper>
                 {imageSrc.map((image, i) => (
                   <SwiperSlide key={i} className="relative">
