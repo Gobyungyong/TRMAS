@@ -39,6 +39,14 @@ function App() {
               }
             />
             <Route
+              path={routes.projectModify}
+              element={
+                <RouterForLoginUser>
+                  <UploadProject template="modify" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
               path={routes.storyAdmin}
               element={
                 <RouterForLoginUser>

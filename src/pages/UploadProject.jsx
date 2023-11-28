@@ -1,21 +1,17 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useState, useRef } from "react";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ref as DBref, set } from "firebase/database";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 import Button from "../components/Button";
 import { storage, db } from "../firebase";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 import routes from "../routes";
+import Swiper from "../components/Swiper";
 
-function UploadProject() {
+function UploadProject({ template = null }) {
   const [imageSrc, setImageSrc] = useState([]);
   const [imageFiles, setImageFiles] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -122,14 +118,7 @@ function UploadProject() {
             </label>
 
             {imageSrc.length > 0 ? (
-              <Swiper
-                modules={[Navigation, Pagination, Scrollbar]}
-                slidesPerView={1}
-                rewind
-                navigation
-                pagination={{ clickable: true }}
-                className="w-full max-w-xl border border-indigo-400 p-2 rounded-md focus:outline-none focus:border-indigo-700 focus:border-2 h-96 flex items-center justify-center"
-              >
+              <Swiper>
                 {imageSrc.map((image, i) => (
                   <SwiperSlide key={i} className="relative">
                     <img
