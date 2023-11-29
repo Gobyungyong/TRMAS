@@ -21,7 +21,7 @@ function UploadProject({ template = null }) {
   const imageLimit = 10;
 
   useEffect(() => {
-    if (!template === "modify") return;
+    if (!(template === "modify")) return;
 
     setImageSrc(state?.images);
     subjectRef.current.value = state?.subject;
@@ -96,7 +96,7 @@ function UploadProject({ template = null }) {
   return (
     <>
       {isLoading ? <Loading /> : null}
-      <div className="bg-white py-10 sm:pt-20 sm:pb-10">
+      <div className="bg-white py-8 sm:pb-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto  lg:mx-0 flex justify-between">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
