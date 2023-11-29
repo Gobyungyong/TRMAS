@@ -47,7 +47,7 @@ function Editor() {
       const toolbar = quillRef.current.getEditor().getModule("toolbar");
       toolbar.addHandler("image", imageHandler);
     }
-  }, []);
+  }, [setQuillImageFiles]);
 
   const modules = {
     toolbar: [
