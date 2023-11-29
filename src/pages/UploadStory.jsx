@@ -18,7 +18,6 @@ function UploadStory({ template = null }) {
   const [imageSrc, setImageSrc] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [content, setContent] = useState();
   const [quillContent, setQuillContent] = useRecoilState(quillValue);
   const [quillImageFiles, setQuillImageFiles] = useRecoilState(quillImages);
   const { state } = useLocation();
@@ -29,9 +28,10 @@ function UploadStory({ template = null }) {
   useEffect(() => {
     if (!(template === "modify")) return;
 
-    setImageSrc(state?.images);
+    setImageSrc(state?.thumbnail);
+    setQuillContent(state?.content);
     subjectRef.current.value = state?.subject;
-  }, [template, state]);
+  }, [template, state, setQuillContent]);
 
   function extractBlobUrl() {
     const regex = /<img[^>]+src="([^">]+)"/g;
