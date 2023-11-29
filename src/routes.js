@@ -8,6 +8,7 @@ const routes = {
   projectModify: "/admin/project/modify",
   storyAdmin: "/admin/story",
   storyUpload: "/admin/story/upload",
+  storyModify: "/admin/story/modify",
   policyAdmin: "/admin/policy",
   adminLogin: "/admin/login",
   home: "/home",

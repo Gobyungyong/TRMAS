@@ -64,6 +64,14 @@ function App() {
               }
             />
             <Route
+              path={routes.storyModify}
+              element={
+                <RouterForLoginUser>
+                  <UploadStory template="modify" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
               path={routes.policyAdmin}
               element={
                 <RouterForLoginUser>
