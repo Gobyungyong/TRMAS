@@ -31,11 +31,11 @@ function Project({ template = null }) {
   }
 
   async function modifyProject(project) {
-    await setProject(project);
     navigate(routes.projectModify, { state: project });
   }
 
   function deleteProject(project) {
+    if (!window.confirm("삭제하시겠습니까?")) return;
     const targetProject = ref(db, `projects/${project.subject}`);
     remove(targetProject);
   }
