@@ -11,6 +11,7 @@ import Policy from "./pages/Policy";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import UploadProject from "./pages/UploadProject";
+import UploadStory from "./pages/UploadStory";
 
 function App() {
   return (
@@ -51,6 +52,14 @@ function App() {
               element={
                 <RouterForLoginUser>
                   <Story template="admin" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
+              path={routes.storyUpload}
+              element={
+                <RouterForLoginUser>
+                  <UploadStory />
                 </RouterForLoginUser>
               }
             />
