@@ -13,7 +13,8 @@ const routes = {
   policyAdmin: "/admin/policy",
   policyUpload: "/admin/policy/upload",
   policyModify: "/admin/policy/modify",
-  policyDetail: "/admin/policy/detail",
+  policyDetail: "/policy/detail/:policySubject",
+  policyDetailAdmin: "/admin/policy/detail/:policySubject",
   adminLogin: "/admin/login",
 };
 

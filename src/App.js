@@ -85,6 +85,14 @@ function App() {
               }
             />
             <Route
+              path={routes.policyDetailAdmin}
+              element={
+                <RouterForLoginUser>
+                  <PolicyDetail template="admin" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
               path={routes.policyUpload}
               element={
                 <RouterForLoginUser>
