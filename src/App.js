@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import UploadProject from "./pages/UploadProject";
 import UploadStory from "./pages/UploadStory";
 import StoryDetail from "./pages/StoryDetail";
+import PolicyDetail from "./pages/PolicyDetail";
+import UploadPolicy from "./pages/UploadPolicy";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
             <Route path={routes.story} element={<Story />} />
             <Route path={routes.storyDetail} element={<StoryDetail />} />
             <Route path={routes.policy} element={<Policy />} />
+            <Route path={routes.policyDetail} element={<PolicyDetail />} />
             <Route
               path={routes.projectAdmin}
               element={
@@ -78,6 +81,22 @@ function App() {
               element={
                 <RouterForLoginUser>
                   <Policy template="admin" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
+              path={routes.policyUpload}
+              element={
+                <RouterForLoginUser>
+                  <UploadPolicy />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
+              path={routes.policyModify}
+              element={
+                <RouterForLoginUser>
+                  <UploadPolicy template="modify" />
                 </RouterForLoginUser>
               }
             />

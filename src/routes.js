@@ -11,6 +11,9 @@ const routes = {
   storyModify: "/admin/story/modify",
   storyDetail: "/story/detail/:storySubject",
   policyAdmin: "/admin/policy",
+  policyUpload: "/admin/policy/upload",
+  policyModify: "/admin/policy/modify",
+  policyDetail: "/admin/policy/detail",
   adminLogin: "/admin/login",
 };
 
