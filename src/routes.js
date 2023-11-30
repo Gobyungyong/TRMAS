@@ -1,5 +1,6 @@
 const routes = {
   index: "/",
+  about: "/about",
   project: "/project",
   story: "/story",
   policy: "/policy",

@@ -15,6 +15,7 @@ import UploadStory from "./pages/UploadStory";
 import StoryDetail from "./pages/StoryDetail";
 import PolicyDetail from "./pages/PolicyDetail";
 import UploadPolicy from "./pages/UploadPolicy";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path={routes.index} element={<Layout />}>
             <Route path={routes.index} element={<Home />} />
+            <Route path={routes.about} element={<About />} />
             <Route path={routes.project} element={<Project />} />
             <Route path={routes.story} element={<Story />} />
             <Route path={routes.storyDetail} element={<StoryDetail />} />

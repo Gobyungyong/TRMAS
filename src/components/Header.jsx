@@ -65,7 +65,7 @@ export default function Header() {
           </Link>
 
           <Link
-            to={routes.index}
+            to={routes.about}
             aria-current="page"
             className={cls(
               "text-sm font-semibold leading-6 text-gray-900",
@@ -146,7 +146,7 @@ export default function Header() {
                 </Link>
                 <Link
                   onClick={() => setMobileMenuOpen(false)}
-                  to={routes.index}
+                  to={routes.about}
                   aria-current="page"
                   className={cls(
                     "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50",
