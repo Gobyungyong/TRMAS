@@ -9,12 +9,18 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname: params } = useLocation();
   const regex = /^\/admin/;
+  const storyRegex = /^\/story\/detail/;
 
   return (
-    <header className="bg-white">
+    <header
+      className={cls(
+        "bg-white",
+        storyRegex.test(params) ? "fixed top-0 left-o w-full z-50" : null
+      )}
+    >
       <nav
         className={cls(
-          "mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8",
+          "mx-auto flex w-full items-center justify-between p-6 lg:px-8 border-b border-gray-200",
           regex.test(params) ? "bg-blue-200" : null
         )}
         aria-label="Global"
