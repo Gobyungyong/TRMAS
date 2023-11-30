@@ -9,6 +9,7 @@ import Button from "../components/Button";
 import { db } from "../firebase";
 import Modal from "../components/Modal";
 import Swiper from "../components/Swiper";
+import { cls } from "../utils/classUtil";
 
 function Project({ template = null }) {
   const [projects, setProjects] = useState([]);
@@ -42,8 +43,8 @@ function Project({ template = null }) {
 
   return (
     <div className="bg-white py-8">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto  lg:mx-0 flex justify-between">
+      <div className="w-full min-h-screen px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl flex justify-between pb-10 sm:pb-16 border-b border-gray-200">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Project
           </h2>
@@ -60,7 +61,14 @@ function Project({ template = null }) {
             />
           ) : null}
         </div>
-        <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div
+          className={cls(
+            "w-full grid gap-x-8 gap-y-16 pt-10 sm:pt-16 lg:mx-0 lg:max-w-none ",
+            projects.length === 0
+              ? null
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          )}
+        >
           {projects.length === 0 ? (
             <div className="text-center w-full h-screen">
               아직 프로젝트가 존재하지 않습니다.
@@ -76,7 +84,7 @@ function Project({ template = null }) {
                   alt={project.subject}
                   onClick={() => toggleIsOpen(project)}
                   key={i}
-                  className="max-w-l items-center bg-slate-400 h-96 brightness-100 duration-150 group-hover:brightness-75 group-hover:scale-110"
+                  className="w-full items-center bg-slate-400 h-96 brightness-100 duration-150 group-hover:brightness-75 group-hover:scale-110"
                 />
 
                 <div
