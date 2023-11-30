@@ -62,24 +62,36 @@ function UploadStory({ template = null }) {
         newContent = newContent.replaceAll(key, url[key]);
       }
     }
+    newContent = newContent.replaceAll(
+      'style="cursor: nwse-resize;"',
+      "url[key]"
+    );
 
     return newContent;
   }
 
   async function onUploadStoryToFirebase() {
-    if (!imageFile || subjectRef.current.value === "") return;
+    if (
+      (!(template === "modify") ||
+        !imageFile ||
+        subjectRef.current.value === "") &&
+      !imageSrc &&
+      !imageFile
+    )
+      return;
 
     setIsLoading((prev) => !prev);
     try {
       compareImageUrls(extractBlobUrl());
       const urls = [];
+      let thumbnailRef;
+      let url;
 
-      const thumbnailRef = ref(
-        storage,
-        `stories/thumbnail/${imageFile[0].name}`
-      );
-      await uploadBytes(thumbnailRef, imageFile[0]);
-      const url = await getDownloadURL(thumbnailRef);
+      if (!(template === "modify")) {
+        thumbnailRef = ref(storage, `stories/thumbnail/${imageFile[0].name}`);
+        await uploadBytes(thumbnailRef, imageFile[0]);
+        url = await getDownloadURL(thumbnailRef);
+      }
 
       for (let file of quillImageFiles) {
         for (let key in file) {
@@ -97,16 +109,18 @@ function UploadStory({ template = null }) {
 
       await set(DBref(db, `stories/${subjectRef.current.value}`), {
         subject: subjectRef.current.value,
-        thumbnail: url,
+        thumbnail: template === "modify" ? state.thumbnail : url,
         content: newContent,
+        createdAt: new Date().toLocaleString(),
       });
 
       alert("성공적으로 등록되었습니다.");
       setQuillContent("");
       setQuillImageFiles([]);
       navigate(routes.storyAdmin);
-    } catch {
+    } catch (e) {
       alert("등록이 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      console.error(e);
     } finally {
       setIsLoading((prev) => !prev);
     }
