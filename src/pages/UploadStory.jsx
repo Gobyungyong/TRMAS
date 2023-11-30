@@ -85,9 +85,9 @@ function UploadStory({ template = null }) {
       compareImageUrls(extractBlobUrl());
       const urls = [];
       let thumbnailRef;
-      let url;
+      let url = null;
 
-      if (!(template === "modify")) {
+      if (!(template === "modify") || imageFile) {
         thumbnailRef = ref(storage, `stories/thumbnail/${imageFile[0].name}`);
         await uploadBytes(thumbnailRef, imageFile[0]);
         url = await getDownloadURL(thumbnailRef);
@@ -99,7 +99,7 @@ function UploadStory({ template = null }) {
             storage,
             `stories/images/${file[key].name}`
           );
-          await await uploadBytes(contentImageRef, file[key]);
+          await uploadBytes(contentImageRef, file[key]);
           const contentImageUrl = await getDownloadURL(contentImageRef);
           urls.push(...urls, { [key]: contentImageUrl });
         }
@@ -107,17 +107,28 @@ function UploadStory({ template = null }) {
 
       const newContent = replaceImageUrl(urls);
 
-      await set(DBref(db, `stories/${subjectRef.current.value}`), {
-        subject: subjectRef.current.value,
-        thumbnail: template === "modify" ? state.thumbnail : url,
-        content: newContent,
-        createdAt: new Date().toLocaleString(),
-      });
+      const id = Date.now();
+
+      await set(
+        DBref(
+          db,
+          template === "modify" ? `stories/${state.id}` : `stories/${id}`
+        ),
+        {
+          subject: subjectRef.current.value,
+          thumbnail: url ? url : state.thumbnail,
+          content: newContent,
+          createdAt: new Date().toLocaleString(),
+          id: template === "modify" ? state.id : id,
+        }
+      );
 
       alert("성공적으로 등록되었습니다.");
       setQuillContent("");
       setQuillImageFiles([]);
-      navigate(routes.storyAdmin);
+      navigate(
+        template === "modify" ? `/story/detail/${state.id}` : routes.storyAdmin
+      );
     } catch (e) {
       alert("등록이 실패했습니다. 잠시 후 다시 시도해 주세요.");
       console.error(e);
