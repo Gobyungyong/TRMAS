@@ -9,9 +9,9 @@ const routes = {
   storyAdmin: "/admin/story",
   storyUpload: "/admin/story/upload",
   storyModify: "/admin/story/modify",
+  storyDetail: "/story/detail/:storySubject",
   policyAdmin: "/admin/policy",
   adminLogin: "/admin/login",
-  home: "/home",
 };
 
 export default routes;

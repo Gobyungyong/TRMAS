@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import UploadProject from "./pages/UploadProject";
 import UploadStory from "./pages/UploadStory";
+import StoryDetail from "./pages/StoryDetail";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path={routes.index} element={<Layout />}>
-            <Route path={routes.home} element={<Home />} />
+            <Route path={routes.index} element={<Home />} />
             <Route path={routes.project} element={<Project />} />
             <Route path={routes.story} element={<Story />} />
+            <Route path={routes.storyDetail} element={<StoryDetail />} />
             <Route path={routes.policy} element={<Policy />} />
             <Route
               path={routes.projectAdmin}
