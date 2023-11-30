@@ -25,7 +25,7 @@ function Policy({ template = null }) {
   return (
     <div className="bg-white py-8">
       <div className="mx-auto max-w-7xl min-h-screen px-6 lg:px-8">
-        <div className="mx-auto  lg:mx-0 flex justify-between">
+        <div className="mx-auto lg:mx-0 flex justify-between">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Policy
           </h2>
@@ -44,7 +44,7 @@ function Policy({ template = null }) {
         </div>
         <div
           className={cls(
-            "mx-auto mt-10 grid max-w-xl  gap-x-6 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none  "
+            "mx-auto mt-10 grid max-w-xl gap-x-6 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-10 lg:mx-0 lg:max-w-none"
           )}
         >
           {policies.length === 0 ? (
