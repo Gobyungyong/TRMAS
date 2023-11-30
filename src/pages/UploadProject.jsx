@@ -28,31 +28,50 @@ function UploadProject({ template = null }) {
   }, [template, state]);
 
   async function onUploadProjectToFirebase() {
-    if (!imageFiles || subjectRef.current.value === "") return;
+    if (
+      (!(template === "modify") ||
+        !imageFiles ||
+        subjectRef.current.value === "") &&
+      !imageSrc &&
+      !imageFiles
+    )
+      return;
 
     setIsLoading((prev) => !prev);
     try {
       const urls = [];
 
-      for (let i = 0; i < imageFiles.length; i++) {
-        const storageRef = ref(
-          storage,
-          `projects/images/${imageFiles[i].name}`
-        );
-        await uploadBytes(storageRef, imageFiles[i]);
-        const url = await getDownloadURL(storageRef);
-        urls.push(url);
+      if (imageFiles) {
+        for (let i = 0; i < imageFiles.length; i++) {
+          const storageRef = ref(
+            storage,
+            `projects/images/${imageFiles[i].name}`
+          );
+          await uploadBytes(storageRef, imageFiles[i]);
+          const url = await getDownloadURL(storageRef);
+          urls.push(url);
+        }
       }
-      console.log("제목", subjectRef.current.value);
 
-      await set(DBref(db, `projects/${subjectRef.current.value}`), {
-        subject: subjectRef.current.value,
-        images: urls,
-      });
+      const id = Date.now();
+
+      await set(
+        DBref(
+          db,
+          template === "modify" ? `projects/${state.id}` : `projects/${id}`
+        ),
+        {
+          subject: subjectRef.current.value,
+          images: template === "modify" ? state.images : urls,
+          createdAt: new Date().toLocaleString(),
+          id: template === "modify" ? state.id : id,
+        }
+      );
       alert("성공적으로 등록되었습니다.");
       navigate(routes.projectAdmin);
-    } catch {
+    } catch (e) {
       alert("등록이 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      console.error(e);
     } finally {
       setIsLoading((prev) => !prev);
     }
