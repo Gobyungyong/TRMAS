@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { ref, onValue, remove } from "firebase/database";
+import { ref, onValue, remove, query, orderByChild } from "firebase/database";
 import DOMPurify from "dompurify";
 
 import routes from "../routes";
@@ -15,9 +15,10 @@ function Story({ template = null }) {
 
   useEffect(() => {
     const storiesRef = ref(db, "stories/");
-    onValue(storiesRef, (snapshot) => {
+    const storiesQuery = query(storiesRef, orderByChild("createdAt"));
+    onValue(storiesQuery, (snapshot) => {
       if (!snapshot.val()) return;
-      const storiesData = Object.values(snapshot.val());
+      const storiesData = Object.values(snapshot.val()).reverse();
       setStories(storiesData);
     });
   }, []);
@@ -33,7 +34,7 @@ function Story({ template = null }) {
 
   function deleteStory(story) {
     if (!window.confirm("삭제하시겠습니까?")) return;
-    const targetStory = ref(db, `stories/${story.subject}`);
+    const targetStory = ref(db, `stories/${story.id}`);
     remove(targetStory);
   }
 
@@ -81,7 +82,7 @@ function Story({ template = null }) {
                     alt={story.subject}
                     key={i}
                     className="max-w-full w-full h-full items-center absolute top-0 left-0"
-                    onClick={() => navigate(`/story/detail/${story.subject}`)}
+                    onClick={() => navigate(`/story/detail/${story.id}`)}
                   />
                   {template === "admin" ? (
                     <div className="group-hover:block group-hover:text-xl absolute top-5 right-5 space-x-4 group-hover:text-yellow-400 group-hover:z-50 group-hover:font-bold group-hover:text-opacity-80 hidden">

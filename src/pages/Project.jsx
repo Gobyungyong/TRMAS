@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { ref, onValue, remove } from "firebase/database";
+import { ref, onValue, remove, query, orderByChild } from "firebase/database";
 import { SwiperSlide } from "swiper/react";
 
 import routes from "../routes";
@@ -19,13 +19,15 @@ function Project({ template = null }) {
 
   useEffect(() => {
     const projectsRef = ref(db, "projects/");
-    onValue(projectsRef, (snapshot) => {
+    const projectsQuery = query(projectsRef, orderByChild("createdAt"));
+    onValue(projectsQuery, (snapshot) => {
       if (!snapshot.val()) return;
-      const projectsData = Object.values(snapshot.val());
+      const projectsData = Object.values(snapshot.val()).reverse();
       setProjects(projectsData);
     });
   }, []);
 
+  console.log("projects", projects);
   function toggleIsOpen(project) {
     setIsOpen((prev) => !prev);
     setProject(project);
@@ -37,7 +39,7 @@ function Project({ template = null }) {
 
   function deleteProject(project) {
     if (!window.confirm("삭제하시겠습니까?")) return;
-    const targetProject = ref(db, `projects/${project.subject}`);
+    const targetProject = ref(db, `projects/${project.id}`);
     remove(targetProject);
   }
 
@@ -69,7 +71,7 @@ function Project({ template = null }) {
               : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           )}
         >
-          {projects.length === 0 ? (
+          {projects?.length === 0 ? (
             <div className="text-center w-full h-screen">
               아직 프로젝트가 존재하지 않습니다.
             </div>
