@@ -72,7 +72,9 @@ function Policy({ template = null }) {
                     )
                   }
                 >
-                  <div className="pl-2 w-12 text-center">{i + 1}</div>
+                  <div className="pl-2 w-12 text-center">
+                    {policies.length - i}
+                  </div>
                   <div className="w-3/4 text-center text-sm leading-6 text-gray-900 text-ellipsis">
                     {policy.subject}
                   </div>
