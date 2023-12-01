@@ -31,6 +31,14 @@ function App() {
             <Route path={routes.policy} element={<Policy />} />
             <Route path={routes.policyDetail} element={<PolicyDetail />} />
             <Route
+              path={routes.admin}
+              element={
+                <RouterForLoginUser>
+                  <Project template="admin" />
+                </RouterForLoginUser>
+              }
+            />
+            <Route
               path={routes.projectAdmin}
               element={
                 <RouterForLoginUser>

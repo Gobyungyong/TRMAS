@@ -4,6 +4,7 @@ const routes = {
   project: "/project",
   story: "/story",
   policy: "/policy",
+  admin: "/admin",
   projectAdmin: "/admin/project",
   projectUpload: "/admin/project/upload",
   projectModify: "/admin/project/modify",
