@@ -16,6 +16,7 @@ import StoryDetail from "./pages/StoryDetail";
 import PolicyDetail from "./pages/PolicyDetail";
 import UploadPolicy from "./pages/UploadPolicy";
 import About from "./pages/About";
+import NotFound from "./pages/404";
 
 function App() {
   return (
@@ -126,6 +127,7 @@ function App() {
                 </RouterForNotLoginUser>
               }
             />
+            <Route path={routes.notFound} element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -18,6 +18,7 @@ const routes = {
   policyDetail: "/policy/detail/:policySubject",
   policyDetailAdmin: "/admin/policy/detail/:policySubject",
   adminLogin: "/admin/login",
+  notFound: "/*",
 };
 
 export default routes;
