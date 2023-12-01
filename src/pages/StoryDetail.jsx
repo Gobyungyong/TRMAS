@@ -10,6 +10,7 @@ function StoryDetail() {
   const { storySubject } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const storyRef = ref(db, `stories/${storySubject}`);
     onValue(storyRef, (snapshot) => {
       if (!snapshot.val()) return;

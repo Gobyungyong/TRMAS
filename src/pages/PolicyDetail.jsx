@@ -14,6 +14,7 @@ function PolicyDetail({ template = null }) {
   const { policySubject } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const policyRef = ref(db, `policies/${policySubject}`);
     onValue(policyRef, (snapshot) => {
       if (!snapshot.val()) return;
