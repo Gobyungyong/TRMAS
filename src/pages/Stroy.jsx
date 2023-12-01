@@ -93,7 +93,7 @@ function Story({ template = null }) {
                 </div>
                 <dl
                   className="mt-3 mb-14"
-                  onClick={() => navigate(`/story/detail/${story.subject}`)}
+                  onClick={() => navigate(`/story/detail/${story.id}`)}
                 >
                   <dt className="text-sm overflow-hidden w-11/12 mb-2 font-bold text-ellipsis">
                     {story.subject}
@@ -107,7 +107,7 @@ function Story({ template = null }) {
                 </dl>
                 <div
                   className="right-2 bottom-2 text-sm absolute text-right font-bold"
-                  onClick={() => navigate(`/story/detail/${story.subject}`)}
+                  onClick={() => navigate(`/story/detail/${story.id}`)}
                 >
                   TMRAS
                 </div>
