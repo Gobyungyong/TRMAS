@@ -32,11 +32,7 @@ export default function Header() {
             className="-m-1.5 p-1.5 flex space-x-2"
           >
             <span className="sr-only">TMRAS</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+            <img className="h-8 w-auto" src="/tmras.png" alt="tmras logo" />
             {regex.test(params) ? (
               <span className="text-lg font-bold">Admin</span>
             ) : null}
@@ -112,11 +108,7 @@ export default function Header() {
               className="-m-1.5 p-1.5 flex space-x-2"
             >
               <span className="sr-only">TMRAS</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <img className="h-8 w-auto" src="/tmras.png" alt="tmras logo" />
               {regex.test(params) ? (
                 <span className="text-lg font-bold">Admin</span>
               ) : null}
