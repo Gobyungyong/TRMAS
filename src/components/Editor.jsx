@@ -13,7 +13,6 @@ function Editor() {
   Quill.register("modules/ImageResize", ImageResize);
   useEffect(() => {
     function imageHandler() {
-      console.log("이미지핸들러");
       const input = document.createElement("input");
       input.setAttribute("type", "file");
       input.setAttribute("accept", "image/*");

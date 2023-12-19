@@ -27,7 +27,6 @@ function Project({ template = null }) {
     });
   }, []);
 
-  console.log("projects", projects);
   function toggleIsOpen(project) {
     setIsOpen((prev) => !prev);
     setProject(project);
