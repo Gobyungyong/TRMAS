@@ -3,7 +3,7 @@ import routes from "../routes";
 
 export function RouterForLoginUser({ children }) {
   const user = sessionStorage.getItem(
-    "firebase:authUser:AIzaSyCqjAufHdf9tdpUagxXjjKPB2sV9nVbGW8:[DEFAULT]"
+    "firebase:authUser:AIzaSyAuZFWGYMyfmR58MLVgvNSND3vJXDhniHc:[DEFAULT]"
   );
 
   if (!user) {
@@ -16,7 +16,7 @@ export function RouterForLoginUser({ children }) {
 
 export function RouterForNotLoginUser({ children }) {
   const user = sessionStorage.getItem(
-    "firebase:authUser:AIzaSyCqjAufHdf9tdpUagxXjjKPB2sV9nVbGW8:[DEFAULT]"
+    "firebase:authUser:AIzaSyAuZFWGYMyfmR58MLVgvNSND3vJXDhniHc:[DEFAULT]"
   );
 
   if (user) {
