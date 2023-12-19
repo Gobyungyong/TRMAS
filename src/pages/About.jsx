@@ -2,7 +2,7 @@ function About() {
   return (
     <div className="min-h-screen relative">
       <img src="/about.jpg" alt="about" className="w-screen h-screen" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-10/12 h-1/2 bg-slate-300 opacity-70" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-10/12 h-full sm:h-1/2 bg-slate-300 opacity-70" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 space-y-4 w-full md:w-2/3 lg:w-1/2">
         <div className="w-full text-center font-bold text-4xl pb-8 sm:pb-14">
           TeloMere RAS
