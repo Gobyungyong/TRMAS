@@ -108,7 +108,6 @@ function UploadStory({ template = null }) {
       const newContent = replaceImageUrl(urls);
 
       const id = Date.now();
-      console.log("1");
       await set(
         DBref(
           db,
@@ -122,7 +121,6 @@ function UploadStory({ template = null }) {
           id: template === "modify" ? state.id : id,
         }
       );
-      console.log("2");
 
       alert("성공적으로 등록되었습니다.");
       setQuillContent("");
